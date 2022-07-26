@@ -6,12 +6,14 @@
 // What does the following code return?
 new Set([1,1,2,2,3,4])
 
+// answer: [1,2,3,4]
 
 
 /******** Quick Question #2 ********/
 // What does the following code return?
-[...new Set("referee")].join("")
+// [...new Set("referee")].join("")
 
+// answer: "ref"
 
 
 /******** Quick Questions #3 ********/
@@ -20,6 +22,7 @@ let m = new Map();
 m.set([1,2,3], true);
 m.set([1,2,3], false);
 
+// answer: {Array(3) => true, Array(3) => false}
 
 
 /******** hasDuplicate ********/
@@ -29,6 +32,7 @@ m.set([1,2,3], false);
 // hasDuplicate([1,3,2,1]) // true
 // hasDuplicate([1,5,-1,4]) // false
 
+const hasDuplicate = arr => {return arr.length !== new Set(arr).size;}
 
 
 /******** vowelCount ********/
@@ -38,3 +42,19 @@ m.set([1,2,3], false);
 
 // vowelCount('awesome') // Map { 'a' => 1, 'e' => 2, 'o' => 1 }
 // vowelCount('Colt') // Map { 'o' => 1 }
+
+const vowelCount = str => {
+    const vowels = new Map();
+    
+    for (let letter of str.toLowerCase()) {
+        if (letter.match(/[aeiou]/)) {
+            if (vowels.has(letter)) {
+                vowels.set(letter, vowels.get(letter) + 1);
+            } else {
+                vowels.set(letter, 1);
+            }
+        } 
+    }
+
+    return vowels;
+}
